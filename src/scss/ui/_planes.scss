@@ -1,0 +1,83 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.planes {
+    background-color: v.$secundario;
+    @include m.tablet { 
+        padding: 1rem 0 10rem 0;
+    }
+
+    h2 {
+        @include m.headingBorder(v.$blanco, v.$primario);
+    }
+    .descripcion {
+        color: v.$blanco;
+    }
+}
+
+.nuestros-planes {
+    display: flex;
+    flex-direction: column;
+
+    @include m.tablet { 
+        flex-direction: row;
+        max-width: 80rem;
+        margin-inline: auto;
+        margin-block-start: 10rem ;
+    }
+    .plan{
+        flex-grow: 1; //hace que el flex ocupe todo el ancho del contenedor
+        background-color: v.$blanco;
+        padding: 16rem 4rem 4rem 4rem ;
+        border-bottom: 1px solid #e1e1e1;
+        transition: 300ms;
+
+        @include m.tablet { 
+            border: none;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        .precio {
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .listado {
+
+            li {
+                text-align: center;
+                margin-bottom: 2rem;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &.inicio {
+            @include m.iconoBg('../img/icono_inicio.svg');
+        }
+
+        &.pro {
+            @include m.iconoBg('../img/icono_pro.svg');
+        }
+
+        &.negocio {
+            background-color: v.$primario;
+            order: -1; // el orden de los elementos en un Flex-box
+
+            @include m.iconoBg('../img/icono_negocio.svg');
+            @include m.tablet { 
+                order: unset; //unset elimnina esa propiedad y no la tiene en cuenta
+                margin-block: -5rem ;
+                border-radius: 2rem;
+                background-position: 50% 7rem;
+                padding-top: calc(16rem + 5rem);
+                z-index: 100;
+            }
+        }
+    }
+}
